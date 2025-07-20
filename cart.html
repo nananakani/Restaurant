@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - BestKai</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">BestKai Ordering</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="cart-section">
+            <h1>Shopping Cart</h1>
+            <div id="cart-items" class="cart-container"></div>
+            
+            <div class="cart-summary">
+                <div class="total">
+                    <span>Total Amount:</span>
+                    <span>$<span id="cart-total">0</span></span>
+                </div>
+                <div class="cart-actions">
+                    <button id="clear-cart" class="btn btn-secondary">Clear Cart</button>
+                    <button id="checkout-btn" class="btn btn-primary">Checkout</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="cart.js"></script>
+</body>
+</html>
