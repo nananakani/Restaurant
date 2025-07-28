@@ -138,25 +138,25 @@ function buttonFilters(){
 buttonFilters()
 
 
-function addToCart(productId) {
+async function addToCart(productId) {
     const product = allProducts.find(p => p.id === productId);
     if (!product) return;
 
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingItem = cart.find(item => item.id === productId);
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            quantity: 1
+    try {
+        const res = await fetch("https://restaurant.stepprojects.ge/api/Baskets/AddToBasket", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${getToken()}`
+            },
+            body: JSON.stringify({ productId, quantity: 1 })
         });
-    }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert('Product added to cart!');
+        if (!res.ok) throw new Error("Add to cart failed");
+
+        alert(`${product.name} added to cart!`);
+        updateCartCounter();
+    } catch (e) {
+        console.error("Add to cart failed:", e);
+    }
 }
